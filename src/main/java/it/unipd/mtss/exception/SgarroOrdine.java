@@ -1,0 +1,12 @@
+////////////////////////////////////////////////////////////////////
+// Alberto  Angeloni    1231122
+// Stefano  Destro      1229139
+////////////////////////////////////////////////////////////////////
+package it.unipd.mtss.exception;
+
+public class SgarroOrdine extends Exception{
+    public SgarroOrdine(String s){
+        super(s);
+    }
+}
+
