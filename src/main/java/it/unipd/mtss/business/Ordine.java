@@ -62,5 +62,40 @@ public double PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcess
             throw new OggettoNonTrovato("Sconto non applicabile, numero processori < 5");
         return min;
 }
+//ISSUE #3
+public EItem dieciMouse() throws OggettoNonTrovato
+{
+    int i=0;
+    double min=99999;
+    int pos=0;
+    for(EItem pippo: list)
+    {
+        if(pippo.getTipo()==itemType.Mouse)
+        {
+            i++;
+            if(pippo.getPrezzo()<min)
+            {
+                min=pippo.getPrezzo();
+                pos=i;
+
+            }
+
+        }
+    }
+    if(i>10)
+    {
+        for(EItem franco: list)
+        {
+            if(pos==0) return  new EItem(franco.getTipo(), franco.getNome(),franco.getPrezzo());
+            if(franco.getTipo()==itemType.Mouse)
+            {
+                pos--;
+            }
+        }
+    }
+    throw new OggettoNonTrovato("Numero mouse inferiore a dieci");
+}
+
+
 
 }
