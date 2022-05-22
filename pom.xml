@@ -97,7 +97,7 @@
         </dependencies>
         <configuration>
           <failsOnError>true</failsOnError>
-          <configLocation>config/checkstyle.xml</configLocation>
+          <configLocation>paolo/checkstyle.xml</configLocation>
           <consoleOutput>true</consoleOutput>
           <linkXRef>false</linkXRef>
         </configuration>
@@ -124,6 +124,7 @@
           </execution>
           <execution>
             <id>report</id>
+            <phase>test</phase>
             <goals>
               <goal>report</goal>
             </goals>
