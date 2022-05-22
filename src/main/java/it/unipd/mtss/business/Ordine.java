@@ -44,5 +44,23 @@ public double Totale()
 
     return totale;
 }
+//ISSUE #2
+public double PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori() throws OggettoNonTrovato{
+    int i = 0;
+    double min=9999;
+    for(EItem giorgio : list)
+        if(giorgio.getTipo() == itemType.Processor){
+            if(i == 0)
+                min = giorgio.getPrezzo();
+            i++;
+            if(giorgio.getPrezzo() < min)
+                min = giorgio.getPrezzo();
+        }
+        if(i>5)
+            min = min-(min*50/100);
+        else
+            throw new OggettoNonTrovato("Sconto non applicabile, numero processori < 5");
+        return min;
+}
 
 }
