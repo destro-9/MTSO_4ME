@@ -95,7 +95,30 @@ public EItem dieciMouse() throws OggettoNonTrovato
     }
     throw new OggettoNonTrovato("Numero mouse inferiore a dieci");
 }
-
+//ISSUE #4
+public EItem NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro() throws OggettoNonTrovato{
+    int m=0, k=0, i=0, pos=0;
+    double min=9999;
+    for(EItem cristiano : list){
+        if(i==0) min=cristiano.getPrezzo();
+        if(cristiano.getTipo() == itemType.Mouse)
+            m++;
+        if(cristiano.getTipo() == itemType.Keyboard)
+            k++;
+        if(cristiano.getPrezzo() < min){
+            min = cristiano.getPrezzo();
+            pos=i;
+        }
+        i++;
+    }
+    i=0;
+    if(m == k)
+        for(EItem luca : list){
+            if(i==pos) return new EItem(luca.getTipo(),luca.getNome(),0); //Ritorno articolo con costo zero
+            i++;
+        }
+    throw new OggettoNonTrovato("Numero tastiere disuguale da numero mouse");
+}
 
 
 }
