@@ -131,7 +131,7 @@ public double milleuro()
         totale=totale-((totale*10)/100);
 return totale;
 }
-
+//ISSUE #6
 public int trentaelementi() throws SgarroOrdine{
     int elementi=0;
     for(EItem gino:list)
