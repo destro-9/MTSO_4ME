@@ -17,7 +17,6 @@ public class ListaOrdini{
     public List<Ordine> OrdiniRegalati(List<Ordine> lista)
     {
         Collections.shuffle(lista);
-
         DateFormat df=new SimpleDateFormat("HH:mm");
         Date d1,d2;
         Timestamp t1,t2;
@@ -25,10 +24,9 @@ public class ListaOrdini{
         int dim=0;
         if(lista.size()<10)  dim=lista.size();
         else dim=10;
-
         try{
-            d1=DateFormat.parse("18.00");
-            d2=DateFormat.parse("19.00");
+            d1=df.parse("18.00");
+            d2=df.parse("19.00");
             t1=new Timestamp(d1.getTime());
             t2=new Timestamp(d2.getTime());
 
