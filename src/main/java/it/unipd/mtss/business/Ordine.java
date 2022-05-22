@@ -132,4 +132,13 @@ public double milleuro()
 return totale;
 }
 
+public int trentaelementi() throws SgarroOrdine{
+    int elementi=0;
+    for(EItem gino:list)
+    {
+        elementi++;
+    }
+    if(elementi>30) throw new SgarroOrdine("ordine non valido, il limite massimo e' 30");
+return elementi;
+}
 }
