@@ -141,4 +141,15 @@ public int trentaelementi() throws SgarroOrdine{
     if(elementi>30) throw new SgarroOrdine("ordine non valido, il limite massimo e' 30");
 return elementi;
 }
+//ISSUE #7
+public double diecieuro()
+{
+    double totale=0.0;
+    for(EItem franco: list)
+    {
+        totale+=franco.getPrezzo();
+    }
+    if(totale<10) totale+=2;
+return totale;
+}
 }
