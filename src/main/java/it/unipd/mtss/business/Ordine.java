@@ -34,6 +34,15 @@ public Date getTime()
 {
     return time;
 }
+//ISSUE #1
+public double Totale()
+{
+    double totale=0.0;
 
+    for(EItem paolo: list )
+        totale+=paolo.getPrezzo();
+
+    return totale;
+}
 
 }
