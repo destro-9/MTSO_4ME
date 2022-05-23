@@ -11,6 +11,7 @@ import it.unipd.mtss.classi.EItem.itemType;
 import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -60,23 +61,25 @@ public class OrdineTest {
     }
     @Test(expected = OggettoNonTrovato.class)//Task2
     public void EccezioneAspettataSeInferioreCinqueProcessori() throws OggettoNonTrovato{
-        l.add(item);
-        o = new Ordine(u,d,l);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(item);
+        o = new Ordine(u,d,aux);
         o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
     }
     @Test //Task2
     public void ScontoSeNumeroProcessoriMaggioreDiCinque(){
+        ArrayList<EItem> aux = new ArrayList<EItem>();
         for(int i=0;i<5;i++)
-            l.add(item);
-        l.add(new EItem(itemType.Processor, "Min", 200));
-        o = new Ordine(u,d,l);
+            aux.add(item);
+        aux.add(new EItem(itemType.Processor, "Min", 200));
+        o = new Ordine(u,d,aux);
         double numero = 0.0;
         try{
             numero = o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
         }catch(OggettoNonTrovato e){fail(e.getMessage());}
         assertEquals(100.0, numero,0.001); 
     }    
-    @Test(expected=OggettoNonTrovato.class)
+    @Test(expected=OggettoNonTrovato.class) //Task3
     public void MouseRegalato() throws OggettoNonTrovato
     {
         l=Arrays.asList(
@@ -127,21 +130,23 @@ public class OrdineTest {
     }
     @Test(expected = OggettoNonTrovato.class) //task4
     public void EccezioneAspettataNumeroTastiereDisugualeMouse() throws OggettoNonTrovato{
-        l.add(new EItem(itemType.Mouse, "Mouse1", 10));
-        l.add(new EItem(itemType.Mouse, "Mouse2", 20));
-        l.add(new EItem(itemType.Keyboard, "Key1", 30));
-        l.add(new EItem(itemType.Keyboard, "Key2", 40));
-        l.add(new EItem(itemType.Mouse, "Mouse3", 50));
-        o = new Ordine(u, d, l);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(new EItem(itemType.Mouse, "Mouse1", 10));
+        aux.add(new EItem(itemType.Mouse, "Mouse2", 20));
+        aux.add(new EItem(itemType.Keyboard, "Key1", 30));
+        aux.add(new EItem(itemType.Keyboard, "Key2", 40));
+        aux.add(new EItem(itemType.Mouse, "Mouse3", 50));
+        o = new Ordine(u, d, aux);
         o.NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro();
     }
     @Test //task4
     public void NumeroTastiereUgualeANumeroMouse(){
-        l.add(new EItem(itemType.Mouse, "Mouse1", 10));
-        l.add(new EItem(itemType.Mouse, "Mouse2", 20));
-        l.add(new EItem(itemType.Keyboard, "Key1", 30));
-        l.add(new EItem(itemType.Keyboard, "Key2", 40));
-        o = new Ordine(u, d, l);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(new EItem(itemType.Mouse, "Mouse1", 10));
+        aux.add(new EItem(itemType.Mouse, "Mouse2", 20));
+        aux.add(new EItem(itemType.Keyboard, "Key1", 30));
+        aux.add(new EItem(itemType.Keyboard, "Key2", 40));
+        o = new Ordine(u, d, aux);
         try{
             item = o.NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro();
         } catch(OggettoNonTrovato e){fail(e.getMessage());}
@@ -150,16 +155,18 @@ public class OrdineTest {
     @Test(expected = SgarroOrdine.class) //task6
     public void EccezioneAspettata30Elementi() throws SgarroOrdine{
         item = new EItem(itemType.Processor,"item",666);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
         for(int i=0; i<40; i++)
-            l.add(item);
-        o = new Ordine(u, d, l);
+            aux.add(item);
+        o = new Ordine(u, d, aux);
         o.trentaelementi();
     }
     @Test //task6
     public void Test30Elementi(){
         item = new EItem(itemType.Processor, "item", 666);
-        l.add(item);
-        o = new Ordine(u, d, l);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(item);
+        o = new Ordine(u, d, aux);
         int n=-1;
         try{
             n = o.trentaelementi();
@@ -168,20 +175,20 @@ public class OrdineTest {
     }
     @Test //task7
     public void Inferiore10Euro(){
-        item = new EItem(itemType.Processor, "item", 5);
-        l.add(item);
-        o = new Ordine(u, d, l);
-        double j = -1;
+        item = new EItem(itemType.Processor, "item", 5.0);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(item);
+        o = new Ordine(u, d, aux);
         try{
-            j = o.diecieuro();
+            assertEquals(7.0, o.diecieuro(), 0.001);
         } catch(OggettoNonTrovato e){e.getMessage();}
-        assertEquals(7, j, 0.001);
     }
     @Test //task7
     public void Superiore10Euro(){
         item = new EItem(itemType.Processor, "item", 51);
-        l.add(item);
-        o = new Ordine(u, d, l);
+        ArrayList<EItem> aux = new ArrayList<EItem>();
+        aux.add(item);
+        o = new Ordine(u, d, aux);
         double j = -1;
         try{
             j = o.diecieuro();
