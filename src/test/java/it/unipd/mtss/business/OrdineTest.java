@@ -17,15 +17,18 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.DateFormat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class OrdineTest {
     User u;
     Date d;
     Ordine o;
+    EItem item;
     List<EItem> l;
     @Before
     void Hobisognodivalori(){
         u=new User(0, 22, "Nome", "Cognome");
+        item=new EItem(itemType.Processor, "Processor", 666);
         DateFormat df=new SimpleDateFormat("HH:mm");
         try{
             d=df.parse("18");
@@ -46,5 +49,23 @@ public class OrdineTest {
     {
         assertEquals(297.0, o.Totale(),0.001);
     }
+    @Test(expected = OggettoNonTrovato.class)//Task2
+    public void EccezioneAspettataSeInferioreCinqueProcessori(){
+        l.add(item);
+        o = new Ordine(u,d,l);
+        try{
+            o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
+        } catch (OggettoNonTrovato e){fail(e.getMessage());}
+    }
+    @Test //Task2
+    public void ScontoSeNumeroProcessoriMaggioreDiCinque(){
+        for(int i=0;i<10;i++)
+            l.add(item);
+        o = new Ordine(u,d,l);
+        try{
+            o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
+        }catch(OggettoNonTrovato e){fail(e.getMessage());}
+    }
     
+
 }
