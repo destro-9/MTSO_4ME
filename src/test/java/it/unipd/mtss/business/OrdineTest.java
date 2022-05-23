@@ -60,12 +60,15 @@ public class OrdineTest {
     }
     @Test //Task2
     public void ScontoSeNumeroProcessoriMaggioreDiCinque(){
-        for(int i=0;i<10;i++)
+        for(int i=0;i<5;i++)
             l.add(item);
+        l.add(new EItem(itemType.Processor, "Min", 200));
         o = new Ordine(u,d,l);
+        double numero = 0.0;
         try{
-        o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
+            numero = o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
         }catch(OggettoNonTrovato e){fail(e.getMessage());}
+        assertEquals(100.0, numero,0.001); 
     }    
     @Test(expected=OggettoNonTrovato.class)
     public void MOuseRegalato() throws OggettoNonTrovato
