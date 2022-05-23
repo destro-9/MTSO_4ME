@@ -29,16 +29,18 @@ public class ListaOrdini{
             d2=df.parse("19.00");
             t1=new Timestamp(d1.getTime());
             t2=new Timestamp(d2.getTime());
-
-            for(int i=0; i<dim; i++)
+            int i=0;
+            while(i != lista.size() && dim>0)
             {
                 if(lista.get(i).getUser().getEta()<18)
                 {
                     if(lista.get(i).getTime().compareTo(t1)>=0 && lista.get(i).getTime().compareTo(t2)<=0)
                     {
                         temp.add(lista.get(i));
+                        dim--;
                     }
                 }
+                i++;
             }
         }
         catch(ParseException z){return temp;}

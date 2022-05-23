@@ -50,7 +50,7 @@ public class ListaTest{
         (new Ordine(new User(8, 17, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
         (new Ordine(new User(9, 16, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
         (new Ordine(new User(10, 16, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
-        assertEquals(10, L.OrdiniRegalati(orderlist));
+        assertEquals(10, L.OrdiniRegalati(orderlist).size());
     }
     @Test
     public void regalaNienteListamaggioredi10()
@@ -66,7 +66,7 @@ public class ListaTest{
         (new Ordine(new User(8, 17, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
         (new Ordine(new User(9, 16, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
         (new Ordine(new User(10, 16, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
-        assertEquals(0, L.OrdiniRegalati(orderlist));
+        assertEquals(0, L.OrdiniRegalati(orderlist).size());
     }
     @Test
     public void regalaTuttoListaminoredi10()
@@ -74,7 +74,7 @@ public class ListaTest{
         orderlist=Arrays.asList(new Ordine(new User(0, 14, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6))),
         (new Ordine(new User(0, 14, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))),
         (new Ordine(new User(1, 14, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))));
-        assertEquals(3, L.OrdiniRegalati(orderlist));
+        assertEquals(3, L.OrdiniRegalati(orderlist).size());
     }
     @Test 
     public void regalaNienteListaminoredi10()
@@ -82,7 +82,7 @@ public class ListaTest{
         orderlist=Arrays.asList(new Ordine(new User(0, 14, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6))),
         (new Ordine(new User(0, 14, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))),
         (new Ordine(new User(1, 14, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))));
-        assertEquals(0, L.OrdiniRegalati(orderlist));
+        assertEquals(0, L.OrdiniRegalati(orderlist).size());
     }
     @Test
     public void regalaOrdiniCorretti(){
@@ -102,6 +102,6 @@ public class ListaTest{
         (new Ordine(new User(13, 90, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Processor, "M1", 25.6)))),
         (new Ordine(new User(14, 91, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
 
-        assertEquals(8, L.OrdiniRegalati(orderlist));
+        assertEquals(8, L.OrdiniRegalati(orderlist).size());
     }
 }
