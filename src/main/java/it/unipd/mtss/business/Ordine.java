@@ -120,13 +120,15 @@ public EItem NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro() thro
     throw new OggettoNonTrovato("Numero tastiere disuguale da numero mouse");
 }
 //ISSUE #5
-public double milleuro()
+public double milleuro() throws SgarroOrdine
 {
     double totale=0.0;
     for(EItem mario:list)
     {
         totale+=mario.getPrezzo();
     }
+    if(totale == 0.0)
+        throw new SgarroOrdine("Ordine vuoto");
     if(totale>1000)
         totale=totale-((totale*10)/100);
 return totale;

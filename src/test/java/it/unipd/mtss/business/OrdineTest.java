@@ -36,7 +36,7 @@ public class OrdineTest {
         }
         catch(ParseException P){System.out.print("FORMATO NON VALIDO");};
         l=Collections.emptyList();
-         o=new Ordine(u, d, l);
+        o=new Ordine(u, d, l);
     }
     @Test
     public void OggettoValido(){
@@ -83,16 +83,16 @@ public class OrdineTest {
     public void MouseRegalato() throws OggettoNonTrovato
     {
         l=Arrays.asList(
-        new EItem(EItem.itemType.Mouse,"Q1",55.0),
-        new EItem(EItem.itemType.Mouse,"Q2",55.5),
-        new EItem(EItem.itemType.Mouse,"Q3",60.0),
-        new EItem(EItem.itemType.Mouse,"Q4",65.0),
-        new EItem(EItem.itemType.Mouse,"Q5",65.5),
-        new EItem(EItem.itemType.Mouse,"Q6",70.0),
-        new EItem(EItem.itemType.Mouse,"Q7",75.0),
-        new EItem(EItem.itemType.Mouse,"Q8",75.5),
-        new EItem(EItem.itemType.Mouse,"Q9",82.0),
-        new EItem(EItem.itemType.Mouse,"Q10",89.9));
+            new EItem(EItem.itemType.Mouse,"Q1",55.0),
+            new EItem(EItem.itemType.Mouse,"Q2",55.5),
+            new EItem(EItem.itemType.Mouse,"Q3",60.0),
+            new EItem(EItem.itemType.Mouse,"Q4",65.0),
+            new EItem(EItem.itemType.Mouse,"Q5",65.5),
+            new EItem(EItem.itemType.Mouse,"Q6",70.0),
+            new EItem(EItem.itemType.Mouse,"Q7",75.0),
+            new EItem(EItem.itemType.Mouse,"Q8",75.5),
+            new EItem(EItem.itemType.Mouse,"Q9",82.0),
+            new EItem(EItem.itemType.Mouse,"Q10",89.9));
         EItem it=new EItem(EItem.itemType.Mouse, "Q1", 55.0);
         assertEquals(it, o.dieciMouse());
     }
@@ -106,8 +106,8 @@ public class OrdineTest {
             new EItem(EItem.itemType.Mouse,"Q3",60.0),
             new EItem(EItem.itemType.Mouse,"Q4",65.0),
             new EItem(EItem.itemType.Mouse,"Q5",65.5));
-            o=new Ordine(u, d, l);
-            o.dieciMouse();   
+        o=new Ordine(u, d, l);
+        o.dieciMouse();   
     }
     //task5
     @Test
@@ -119,14 +119,16 @@ public class OrdineTest {
             new EItem(EItem.itemType.Mouse,"Q3",360.0),
             new EItem(EItem.itemType.Mouse,"Q4",465.0),
             new EItem(EItem.itemType.Mouse,"Q5",565.5));
-            o=new Ordine(u, d, l);
-            double totale=1901-190.1;
+        o=new Ordine(u, d, l);
+        double totale=1901-190.1;
+        try{
             assertEquals(totale, o.milleuro(),0.001);
+        }catch(SgarroOrdine e){fail(e.getMessage());}
     }
-    @Test
-    public void ScontoConListaVuota()
+    @Test(expected = SgarroOrdine.class)
+    public void ScontoConListaVuota() throws SgarroOrdine
     {
-        assertEquals(0.0, o.milleuro(),0.001);
+        o.milleuro();
     }
     @Test(expected = OggettoNonTrovato.class) //task4
     public void EccezioneAspettataNumeroTastiereDisugualeMouse() throws OggettoNonTrovato{
