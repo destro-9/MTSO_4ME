@@ -47,9 +47,17 @@ public class OrdineTest {
     @Test 
     public void totalecorretto()
     {
+        l=Arrays.asList(new EItem(EItem.itemType.Keyboard,"A",76.0),
+            new EItem(EItem.itemType.Processor,"m1",99.0), 
+            new EItem(EItem.itemType.Motherboard,"a567",122.0));
+            o=new Ordine(u,d,l);
         assertEquals(297.0, o.Totale(),0.001);
     }
-    
+    @Test
+    public void TotaleConListaVuota()
+    {
+        assertEquals(0.0, o.Totale(),0.001);
+    }
     @Test(expected = OggettoNonTrovato.class)//Task2
     public void EccezioneAspettataSeInferioreCinqueProcessori(){
         l.add(item);
@@ -87,15 +95,32 @@ public class OrdineTest {
         EItem it=new EItem(EItem.itemType.Mouse, "Q1", 55.0);
         assertEquals(it, o.dieciMouse());
     }
+    //task3
     @Test (expected = OggettoNonTrovato.class)
     public void FailTest() throws OggettoNonTrovato
     {
-        try {
-            o.dieciMouse();
-        } catch (OggettoNonTrovato e) {
-            fail(e.getMessage());
-        }
+        l=Arrays.asList(
+            new EItem(EItem.itemType.Mouse,"Q1",55.0),
+            new EItem(EItem.itemType.Mouse,"Q2",55.5),
+            new EItem(EItem.itemType.Mouse,"Q3",60.0),
+            new EItem(EItem.itemType.Mouse,"Q4",65.0),
+            new EItem(EItem.itemType.Mouse,"Q5",65.5));
+            o=new Ordine(u, d, l);
+            o.dieciMouse();   
     }
-    
+    //task5
+    @Test
+    public void ScontoCorretto()
+    {
+        l=Arrays.asList(
+            new EItem(EItem.itemType.Mouse,"Q1",155.0),
+            new EItem(EItem.itemType.Mouse,"Q2",355.5),
+            new EItem(EItem.itemType.Mouse,"Q3",360.0),
+            new EItem(EItem.itemType.Mouse,"Q4",465.0),
+            new EItem(EItem.itemType.Mouse,"Q5",565.5));
+            o=new Ordine(u, d, l);
+            double totale=1901-190.1;
+            assertEquals(totale, o.milleuro(),0.001);
+    }
 
 }
