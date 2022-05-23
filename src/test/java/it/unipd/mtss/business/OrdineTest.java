@@ -51,12 +51,10 @@ public class OrdineTest {
     }
     
     @Test(expected = OggettoNonTrovato.class)//Task2
-    public void EccezioneAspettataSeInferioreCinqueProcessori(){
+    public void EccezioneAspettataSeInferioreCinqueProcessori() throws OggettoNonTrovato{
         l.add(item);
         o = new Ordine(u,d,l);
-        try{
-            o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
-        } catch (OggettoNonTrovato e){fail(e.getMessage());}
+        o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
     }
     @Test //Task2
     public void ScontoSeNumeroProcessoriMaggioreDiCinque(){
@@ -96,6 +94,61 @@ public class OrdineTest {
             fail(e.getMessage());
         }
     }
-    
+    @Test(expected = OggettoNonTrovato.class) //task4
+    public void EccezioneAspettataNumeroTastiereDisugualeMouse() throws OggettoNonTrovato{
+        l.add(new EItem(itemType.Mouse, "Mouse1", 10));
+        l.add(new EItem(itemType.Mouse, "Mouse2", 20));
+        l.add(new EItem(itemType.Keyboard, "Key1", 30));
+        l.add(new EItem(itemType.Keyboard, "Key2", 40));
+        l.add(new EItem(itemType.Mouse, "Mouse3", 50));
+        o = new Ordine(u, d, l);
+        o.NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro();
+    }
+    @Test //task4
+    public void NumeroTastiereUgualeANumeroMouse(){
+        l.add(new EItem(itemType.Mouse, "Mouse1", 10));
+        l.add(new EItem(itemType.Mouse, "Mouse2", 20));
+        l.add(new EItem(itemType.Keyboard, "Key1", 30));
+        l.add(new EItem(itemType.Keyboard, "Key2", 40));
+        o = new Ordine(u, d, l);
+        try{
+            item = o.NumeroTastiereUgualeANumeroMouseAlloraRegaloArticoloMenoCaro();
+        } catch(OggettoNonTrovato e){fail(e.getMessage());}
+        assertEquals(0, item.getPrezzo(),0.001);
+    }
+    @Test(expected = SgarroOrdine.class) //task6
+    public void EccezioneAspettata30Elementi() throws SgarroOrdine{
+        item = new EItem(itemType.Processor,"item",666);
+        for(int i=0; i<40; i++)
+            l.add(item);
+        o = new Ordine(u, d, l);
+        o.trentaelementi();
+    }
+    @Test //task6
+    public void Test30Elementi(){
+        item = new EItem(itemType.Processor, "item", 666);
+        l.add(item);
+        o = new Ordine(u, d, l);
+        int n=-1;
+        try{
+            n = o.trentaelementi();
+        } catch(SgarroOrdine e){e.getMessage();}
+        assertEquals(1, n);
+    }
+    @Test //task7
+    public void Inferiore10Euro(){
+        item = new EItem(itemType.Processor, "item", 5);
+        l.add(item);
+        o = new Ordine(u, d, l);
+        assertEquals(7, o.diecieuro(), 0.001);
+    }
+    @Test //task7
+    public void Superiore10Euro(){
+        item = new EItem(itemType.Processor, "item", 51);
+        l.add(item);
+        o = new Ordine(u, d, l);
+        assertEquals(51, o.diecieuro(), 0.001);
+
+    }
 
 }

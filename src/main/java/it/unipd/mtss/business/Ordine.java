@@ -57,7 +57,7 @@ public double PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcess
                 min = giorgio.getPrezzo();
         }
         if(i>5)
-            min = min-(min*50/100);
+            min = min/2;
         else
             throw new OggettoNonTrovato("Sconto non applicabile, numero processori < 5");
         return min;
