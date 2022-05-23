@@ -1,6 +1,7 @@
 package it.unipd.mtss;
 
 import org.junit.Before;
+import it.unipd.mtss.business.Ordine;
 import org.junit.Test;
 import it.unipd.mtss.classi.User;
 import it.unipd.mtss.exception.OggettoNonTrovato;
@@ -11,7 +12,6 @@ import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.text.DateFormat;
@@ -30,6 +30,7 @@ public class OrdineTest {
         }
         catch(ParseException P){System.out.print("FORMATO NON VALIDO");};
         l=Collections.emptyList();
+        Ordine o=new Ordine(u, d, l);
     }
     @Test
     public void OggettoValido(){
