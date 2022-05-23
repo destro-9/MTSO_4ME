@@ -146,9 +146,9 @@ return elementi;
 //ISSUE #7
 public double diecieuro() throws OggettoNonTrovato{
     double totale=0.0;
-    for(EItem franco: list)
+    for(EItem antonio: list)
     {
-        totale+=franco.getPrezzo();
+        totale+=antonio.getPrezzo();
     }
     if(totale == 0)
         throw new OggettoNonTrovato("Ordine vuoto");
