@@ -49,6 +49,7 @@ public class OrdineTest {
     {
         assertEquals(297.0, o.Totale(),0.001);
     }
+    
     @Test(expected = OggettoNonTrovato.class)//Task2
     public void EccezioneAspettataSeInferioreCinqueProcessori(){
         l.add(item);
@@ -63,8 +64,34 @@ public class OrdineTest {
             l.add(item);
         o = new Ordine(u,d,l);
         try{
-            o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
+        o.PrezzoScontatoDelProcessoreMenoCostosoSeOrdinatiPiuDiCinqueProcessori();
         }catch(OggettoNonTrovato e){fail(e.getMessage());}
+    }    
+    @Test(expected=OggettoNonTrovato.class)
+    public void MOuseRegalato() throws OggettoNonTrovato
+    {
+        l=Arrays.asList(
+        new EItem(EItem.itemType.Mouse,"Q1",55.0),
+        new EItem(EItem.itemType.Mouse,"Q2",55.5),
+        new EItem(EItem.itemType.Mouse,"Q3",60.0),
+        new EItem(EItem.itemType.Mouse,"Q4",65.0),
+        new EItem(EItem.itemType.Mouse,"Q5",65.5),
+        new EItem(EItem.itemType.Mouse,"Q6",70.0),
+        new EItem(EItem.itemType.Mouse,"Q7",75.0),
+        new EItem(EItem.itemType.Mouse,"Q8",75.5),
+        new EItem(EItem.itemType.Mouse,"Q9",82.0),
+        new EItem(EItem.itemType.Mouse,"Q10",89.9));
+        EItem it=new EItem(EItem.itemType.Mouse, "Q1", 55.0);
+        assertEquals(it, o.dieciMouse());
+    }
+    @Test (expected = OggettoNonTrovato.class)
+    public void FailTest() throws OggettoNonTrovato
+    {
+        try {
+            o.dieciMouse();
+        } catch (OggettoNonTrovato e) {
+            fail(e.getMessage());
+        }
     }
     
 
