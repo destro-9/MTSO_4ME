@@ -96,22 +96,12 @@ public class ListaTest{
         (new Ordine(new User(7, 11, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Processor, "M1", 25.6)))),
         (new Ordine(new User(8, 17, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
         (new Ordine(new User(9, 16, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
-        (new Ordine(new User(10, 16, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
+        (new Ordine(new User(10, 16, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
+        (new Ordine(new User(11, 19, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))),
+        (new Ordine(new User(12, 20, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Keyboard, "M1", 25.6)))),
+        (new Ordine(new User(13, 90, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Processor, "M1", 25.6)))),
+        (new Ordine(new User(14, 91, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
+
         assertEquals(8, L.OrdiniRegalati(orderlist));
-    }
-    @Test
-    public void CheckEta(){
-        orderlist=Arrays.asList(new Ordine(new User(0, 14, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6))),
-        (new Ordine(new User(1, 19, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))),
-        (new Ordine(new User(2, 14, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Motherboard, "M1", 25.6)))),
-        (new Ordine(new User(3, 14, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Keyboard, "M1", 25.6)))),
-        (new Ordine(new User(4, 20, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Keyboard, "M1", 25.6)))),
-        (new Ordine(new User(5, 15, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Keyboard, "M1", 25.6)))),
-        (new Ordine(new User(6, 15, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Processor, "M1", 25.6)))),
-        (new Ordine(new User(7, 90, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Processor, "M1", 25.6)))),
-        (new Ordine(new User(8, 91, "nome", "cognome"),d3 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
-        (new Ordine(new User(9, 16, "nome", "cognome"),d1 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))),
-        (new Ordine(new User(10, 16, "nome", "cognome"),d2 , ordine=Arrays.asList(new EItem(itemType.Mouse, "M1", 25.6)))));
-        assertEquals(4, L.OrdiniRegalati(orderlist));
     }
 }
