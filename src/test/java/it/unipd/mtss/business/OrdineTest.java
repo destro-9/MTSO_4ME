@@ -122,5 +122,11 @@ public class OrdineTest {
             double totale=1901-190.1;
             assertEquals(totale, o.milleuro(),0.001);
     }
+    @Test
+    public void ScontoConListaVuota()
+    {
+        assertEquals(0.0, o.milleuro(),0.001);
+    }
+    
 
 }
