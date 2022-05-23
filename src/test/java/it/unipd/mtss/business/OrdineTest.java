@@ -16,10 +16,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.DateFormat;
+import static org.junit.Assert.assertEquals;
 
 public class OrdineTest {
     User u;
     Date d;
+    Ordine o;
     List<EItem> l;
     @Before
     void Hobisognodivalori(){
@@ -30,7 +32,7 @@ public class OrdineTest {
         }
         catch(ParseException P){System.out.print("FORMATO NON VALIDO");};
         l=Collections.emptyList();
-        Ordine o=new Ordine(u, d, l);
+         o=new Ordine(u, d, l);
     }
     @Test
     public void OggettoValido(){
@@ -38,6 +40,11 @@ public class OrdineTest {
         l=Arrays.asList(new EItem(EItem.itemType.Keyboard,"A",76.0),
             new EItem(EItem.itemType.Processor,"m1",99.0), 
             new EItem(EItem.itemType.Motherboard,"a567",122.0));
+    }
+    @Test 
+    public void totalecorretto()
+    {
+        assertEquals(297.0, o.Totale(),0.001);
     }
     
 }
