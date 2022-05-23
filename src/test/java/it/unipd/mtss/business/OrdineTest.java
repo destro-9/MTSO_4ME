@@ -71,7 +71,7 @@ public class OrdineTest {
         assertEquals(100.0, numero,0.001); 
     }    
     @Test(expected=OggettoNonTrovato.class)
-    public void MOuseRegalato() throws OggettoNonTrovato
+    public void MouseRegalato() throws OggettoNonTrovato
     {
         l=Arrays.asList(
         new EItem(EItem.itemType.Mouse,"Q1",55.0),
