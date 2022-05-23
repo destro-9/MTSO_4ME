@@ -171,15 +171,26 @@ public class OrdineTest {
         item = new EItem(itemType.Processor, "item", 5);
         l.add(item);
         o = new Ordine(u, d, l);
-        assertEquals(7, o.diecieuro(), 0.001);
+        double j = -1;
+        try{
+            j = o.diecieuro();
+        } catch(OggettoNonTrovato e){e.getMessage();}
+        assertEquals(7, j, 0.001);
     }
     @Test //task7
     public void Superiore10Euro(){
         item = new EItem(itemType.Processor, "item", 51);
         l.add(item);
         o = new Ordine(u, d, l);
-        assertEquals(51, o.diecieuro(), 0.001);
-
+        double j = -1;
+        try{
+            j = o.diecieuro();
+        } catch(OggettoNonTrovato e){e.getMessage();}
+        assertEquals(51, j, 0.001);
     }
-
+    @Test(expected = OggettoNonTrovato.class) //task7
+    public void ListaVuota() throws OggettoNonTrovato{
+        o = new Ordine(u,d,l);
+        o.diecieuro();
+    }
 }

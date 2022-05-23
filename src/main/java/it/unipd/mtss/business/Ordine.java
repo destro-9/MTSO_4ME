@@ -142,13 +142,14 @@ public int trentaelementi() throws SgarroOrdine{
 return elementi;
 }
 //ISSUE #7
-public double diecieuro()
-{
+public double diecieuro() throws OggettoNonTrovato{
     double totale=0.0;
     for(EItem franco: list)
     {
         totale+=franco.getPrezzo();
     }
+    if(totale == 0)
+        throw new OggettoNonTrovato("Ordine vuoto");
     if(totale<10) totale+=2;
 return totale;
 }
