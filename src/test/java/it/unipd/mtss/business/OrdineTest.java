@@ -92,7 +92,8 @@ public class OrdineTest {
             new EItem(EItem.itemType.Mouse,"Q7",75.0),
             new EItem(EItem.itemType.Mouse,"Q8",75.5),
             new EItem(EItem.itemType.Mouse,"Q9",82.0),
-            new EItem(EItem.itemType.Mouse,"Q10",89.9));
+            new EItem(EItem.itemType.Mouse,"Q10",89.9),
+            new EItem(EItem.itemType.Mouse,"Q11",99.9));
         EItem it=new EItem(EItem.itemType.Mouse, "Q1", 55.0);
         assertEquals(it, o.dieciMouse());
     }
