@@ -26,7 +26,7 @@ public class OrdineTest {
     EItem item;
     List<EItem> l;
     @Before
-    void Hobisognodivalori(){
+    public void Hobisognodivalori(){
         u=new User(0, 22, "Nome", "Cognome");
         item=new EItem(itemType.Processor, "Processor", 666);
         DateFormat df=new SimpleDateFormat("HH:mm");
