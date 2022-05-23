@@ -32,7 +32,7 @@ public class OrdineTest {
         item=new EItem(itemType.Processor, "Processor", 666);
         DateFormat df=new SimpleDateFormat("HH:mm");
         try{
-            d=df.parse("18");
+            d=df.parse("18:00");
         }
         catch(ParseException P){System.out.print("FORMATO NON VALIDO");};
         l=Collections.emptyList();
