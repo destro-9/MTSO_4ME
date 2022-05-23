@@ -14,34 +14,54 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class ListaOrdini{
-    public List<Ordine> OrdiniRegalati(List<Ordine> lista)
+    public int OrdiniRegalati(ArrayList<Ordine> lista)
     {
-        Collections.shuffle(lista);
+        //Collections.shuffle(lista);
         DateFormat df=new SimpleDateFormat("HH:mm");
         Date d1,d2;
         Timestamp t1,t2;
-        List<Ordine> temp=new ArrayList<>();
-        int dim=0;
-        if(lista.size()<10)  dim=lista.size();
-        else dim=10;
+        int dim=lista.size(),k=0;
+        if(lista.size()>10)
+            dim=10;
         try{
+            System.out.println("asdas");
             d1=df.parse("18.00");
             d2=df.parse("19.00");
             t1=new Timestamp(d1.getTime());
             t2=new Timestamp(d2.getTime());
-
-            for(int i=0; i<dim; i++)
+            for(Ordine paolo : lista){
+                if(dim == 0)
+                    return k;
+                if(paolo.getUser().getEta()<18){
+                    Date m = paolo.getTime();
+                    Timestamp aux = new Timestamp(m.getTime());
+                    if(aux.after(t1) && aux.before(t2)){
+                        dim--;
+                        k++;
+                        System.out.println(k);
+                    }
+                }
+            }
+        }catch(ParseException z){return k;}
+        return k;
+/*
+            while(i != tot && dim != 0)
             {
                 if(lista.get(i).getUser().getEta()<18)
                 {
                     if(lista.get(i).getTime().compareTo(t1)>=0 && lista.get(i).getTime().compareTo(t2)<=0)
                     {
                         temp.add(lista.get(i));
+                        dim--;
+                        k++;
                     }
                 }
+                i++;
             }
         }
-        catch(ParseException z){return temp;}
-    return temp;
+        catch(ParseException z){return k;}
+    return k;
+    */
     }
+    
 }
